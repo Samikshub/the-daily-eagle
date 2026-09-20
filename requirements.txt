@@ -1,0 +1,6 @@
+streamlit
+pandas
+yfinance
+plotly
+feedparser
+pandas_market_calendars
