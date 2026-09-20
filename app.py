@@ -823,6 +823,30 @@ hr {
         var(--navy-light);
 }
 
+/* =====================================================
+   NEWS PAGINATION
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    /* Keep pagination controls on one horizontal row */
+    div[data-testid="stHorizontalBlock"]:has(
+        button[key*="news_page_"]
+    ) {
+        flex-wrap: nowrap !important;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    div[data-testid="stHorizontalBlock"]:has(
+        button[key*="news_page_"]
+    )::-webkit-scrollbar {
+        display: none;
+    }
+
+}
 
 /* =====================================================
    SELECTBOXES
@@ -882,6 +906,188 @@ footer {
 header {
     background-color:
         transparent;
+}
+
+/* =====================================================
+   MOBILE OPTIMIZATION
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------------
+       HEADER
+       ----------------------------------------------- */
+
+    .tde-header {
+        padding-top: 1.5rem;
+        padding-bottom: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .tde-header-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .tde-title {
+        font-size: 2.6rem;
+    }
+
+    .tde-subtitle {
+        font-size: 0.95rem;
+        margin-top: 0.7rem;
+        line-height: 1.4;
+    }
+
+    .tde-market-status {
+        text-align: left;
+        padding-bottom: 0;
+    }
+
+    .tde-date {
+        font-size: 0.85rem;
+    }
+
+    .market-open,
+    .market-closed {
+        font-size: 0.68rem;
+    }
+
+    .tde-market-description {
+        font-size: 0.65rem;
+    }
+
+
+    /* -----------------------------------------------
+       S&P 100 TICKER
+       ----------------------------------------------- */
+
+    .ticker-wrapper {
+        margin-bottom: 1.25rem;
+        padding: 0.55rem 0;
+    }
+
+    .ticker-item {
+        font-size: 0.68rem;
+        margin-right: 1.5rem;
+    }
+
+
+    /* -----------------------------------------------
+       SECTION HEADERS
+       ----------------------------------------------- */
+
+    .section-header {
+        margin-top: 2rem;
+        margin-bottom: 0.8rem;
+        gap: 0.65rem;
+    }
+
+    .section-header-title {
+        font-size: 1.4rem;
+    }
+
+    .section-header-accent {
+        font-size: 0.65rem;
+    }
+
+
+    /* -----------------------------------------------
+       REGIONAL HEADERS
+       ----------------------------------------------- */
+
+    .region-title {
+        font-size: 1.05rem;
+        margin-top: 1rem;
+        margin-bottom: 0.6rem;
+    }
+
+
+    /* -----------------------------------------------
+       METRIC CARDS
+       ----------------------------------------------- */
+
+    [data-testid="stMetric"] {
+        padding: 0.75rem 0.8rem;
+    }
+
+    [data-testid="stMetricValue"] {
+        font-size: 1.35rem !important;
+    }
+
+    [data-testid="stMetricLabel"] {
+        font-size: 0.7rem !important;
+    }
+
+
+    /* -----------------------------------------------
+       NEWS
+       ----------------------------------------------- */
+
+    .news-card {
+        padding: 0.85rem 0 1rem 0;
+    }
+
+    .news-headline {
+        font-size: 1.05rem;
+        line-height: 1.35;
+    }
+
+    .news-meta {
+        font-size: 0.68rem;
+        line-height: 1.4;
+    }
+
+    .news-description {
+        font-size: 0.82rem;
+        line-height: 1.45;
+        margin-top: 0.45rem;
+    }
+
+
+    /* -----------------------------------------------
+       ECONOMIC EVENTS
+       ----------------------------------------------- */
+
+    .economic-event {
+        padding: 0.85rem 0 1rem 0;
+    }
+
+    .economic-event-top {
+        grid-template-columns: 1fr;
+        gap: 0.4rem;
+    }
+
+    .economic-event-impact {
+        text-align: left;
+        margin-top: 0.15rem;
+    }
+
+    .economic-event-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.7rem;
+    }
+
+    .economic-event-name {
+        font-size: 1rem;
+    }
+
+    .economic-event-title {
+        font-size: 0.72rem;
+    }
+
+
+    /* -----------------------------------------------
+       FOOTER
+       ----------------------------------------------- */
+
+    .tde-footer {
+        margin-top: 2.5rem;
+        padding-bottom: 1.5rem;
+        font-size: 0.68rem;
+    }
+
 }
 
 </style>
