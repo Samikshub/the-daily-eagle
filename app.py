@@ -2248,6 +2248,6 @@ with st.expander("View market data"):
 
 
 st.markdown(
-    '<div class="tde-footer">Dedicated to Simba</div>',
+    '<div class="tde-footer">Developed by Samiksh using 5.6 Luna, VS Code and Streamlit</div>',
     unsafe_allow_html=True
 )
