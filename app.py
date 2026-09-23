@@ -158,7 +158,13 @@ body,
    ===================================================== */
 
 .ticker-wrapper {
-    width: 100%;
+    width: 100vw !important;
+    max-width: none !important;
+
+    position: relative;
+    left: 50%;
+
+    transform: translateX(-50%);
 
     overflow: hidden;
 
@@ -177,6 +183,8 @@ body,
 
     padding:
         0.7rem 0;
+
+    box-sizing: border-box;
 }
 
 .ticker-track {
@@ -188,7 +196,7 @@ body,
         ticker-scroll 180s linear infinite;
 }
 
-.ticker-track:hover {
+.ticker-wrapper:hover .ticker-track {
     animation-play-state: paused;
 }
 
@@ -198,6 +206,7 @@ body,
     align-items: center;
 
     flex-shrink: 0;
+
 }
 
 .ticker-item {
@@ -225,10 +234,20 @@ body,
 }
 
 .ticker-change {
-    color:
-        var(--gold-light);
-
     margin-left: 0.2rem;
+    font-weight: 600;
+}
+
+.ticker-change.up {
+    color: #35D07F;
+}
+
+.ticker-change.down {
+    color: #FF5C5C;
+}
+
+.ticker-change.flat {
+    color: var(--cream-muted);
 }
 
 @keyframes ticker-scroll {
@@ -524,15 +543,9 @@ h3 {
 }
 
 [data-testid="stMetricValue"] {
-    color:
-        var(--cream) !important;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    font-size: 1.65rem !important;
+    font-size: 1.25rem !important;
 }
 
 
@@ -566,153 +579,281 @@ hr {
    ===================================================== */
 
 .economic-event {
+
     padding:
-        1rem 0 1.1rem 0;
+        0.85rem 0 0.95rem 0;
 
     border-bottom:
-        1px solid var(--border);
+        1px solid rgba(53, 64, 82, 0.65);
+
 }
 
+
+/* =====================================================
+   EVENT HEADER
+   ===================================================== */
+
 .economic-event-top {
+
     display: grid;
 
     grid-template-columns:
-        1.3fr 5fr 0.8fr;
+        1.15fr 5.5fr 0.8fr;
 
-    gap: 1.5rem;
+    gap: 1.25rem;
 
     align-items: start;
+
 }
 
+
+/* =====================================================
+   DATE / TIME
+   ===================================================== */
+
 .economic-event-date {
+
     font-family:
         Inter,
         sans-serif;
 
-    font-size: 0.82rem;
+    font-size:
+        0.68rem;
 
-    font-weight: 600;
+    font-weight:
+        700;
+
+    letter-spacing:
+        0.08em;
+
+    text-transform:
+        uppercase;
 
     color:
         var(--cream);
+
 }
 
+
 .economic-event-date span {
+
     display: block;
 
-    margin-top: 0.3rem;
+    margin-top:
+        0.25rem;
+
+    font-size:
+        0.74rem;
+
+    font-weight:
+        400;
+
+    letter-spacing:
+        0;
+
+    text-transform:
+        none;
 
     color:
         var(--cream-muted);
 
-    font-size: 0.76rem;
-
-    font-weight: 400;
 }
 
+
+/* =====================================================
+   EVENT NAME
+   ===================================================== */
+
 .economic-event-name {
+
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    font-size: 1.08rem;
+    font-size:
+        1.08rem;
 
-    font-weight: 600;
+    font-weight:
+        600;
+
+    line-height:
+        1.2;
 
     color:
         var(--cream);
+
+}
+
+/* =====================================================
+   ECONOMIC EVENT LINK
+   ===================================================== */
+
+.economic-event-link {
+    color: var(--cream);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.economic-event-link:hover {
+    color: var(--gold-light);
+    text-decoration: underline;
 }
 
 .economic-event-title {
-    margin-top: 0.25rem;
+
+    margin-top:
+        0.2rem;
 
     font-family:
         Inter,
         sans-serif;
 
-    font-size: 0.78rem;
+    font-size:
+        0.74rem;
 
-    line-height: 1.4;
+    line-height:
+        1.35;
 
-    font-weight: 400;
+    font-weight:
+        400;
 
     color:
         var(--cream-muted);
+
 }
 
+
+/* =====================================================
+   IMPACT
+   ===================================================== */
+
 .economic-event-impact {
-    text-align: right;
+
+    text-align:
+        right;
 
     font-family:
         Inter,
         sans-serif;
 
-    font-size: 0.72rem;
+    font-size:
+        0.66rem;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
-    letter-spacing: 0.1em;
+    letter-spacing:
+        0.1em;
 
     color:
         var(--gold);
+
 }
 
+
+/* =====================================================
+   CONSENSUS / PREVIOUS / ACTUAL
+   ===================================================== */
+
 .economic-event-details {
-    display: grid;
+
+    display:
+        grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 1.5rem;
+    gap:
+        1.5rem;
 
-    margin-top: 0.8rem;
+    margin-top:
+        0.7rem;
+
+    padding-top:
+        0.55rem;
+
+    border-top:
+        1px solid rgba(53, 64, 82, 0.35);
+
 }
 
+
 .economic-event-details span {
-    display: block;
+
+    display:
+        block;
 
     font-family:
         Inter,
         sans-serif;
 
-    font-size: 0.67rem;
+    font-size:
+        0.62rem;
 
-    letter-spacing: 0.08em;
+    font-weight:
+        600;
+
+    letter-spacing:
+        0.09em;
 
     color:
         var(--cream-muted);
+
 }
 
-.economic-event-details strong {
-    display: block;
 
-    margin-top: 0.2rem;
+.economic-event-details strong {
+
+    display:
+        block;
+
+    margin-top:
+        0.15rem;
 
     font-family:
         Georgia,
         "Times New Roman",
         serif;
 
-    font-size: 0.9rem;
+    font-size:
+        0.88rem;
 
-    font-weight: 500;
+    font-weight:
+        500;
+
+    line-height:
+        1.25;
 
     color:
         var(--cream);
+
 }
 
+
+/* =====================================================
+   SOURCE
+   ===================================================== */
+
 .economic-event-source {
-    margin-top: 0.75rem;
+
+    margin-top:
+        0.55rem;
 
     font-family:
         Inter,
         sans-serif;
 
-    font-size: 0.68rem;
+    font-size:
+        0.62rem;
 
     color:
         var(--cream-muted);
+
+    opacity:
+        0.8;
+
 }
 
 
@@ -846,6 +987,18 @@ hr {
         display: none;
     }
 
+}
+
+/* =====================================================
+   NEWS PAGINATION — ACTIVE PAGE
+   ===================================================== */
+
+/* Active/current page */
+button[kind="primary"] {
+    background-color: var(--gold) !important;
+    border-color: var(--gold) !important;
+    color: var(--navy) !important;
+    font-weight: 700 !important;
 }
 
 /* =====================================================
@@ -1216,20 +1369,28 @@ if not ticker_data.empty:
 
         if pd.notna(change):
 
-            change_text = (
-                f"{change:+.2f}%"
-            )
+            change_text = f"{change:+.2f}%"
+
+            if change > 0:
+                change_class = "up"
+
+            elif change < 0:
+                change_class = "down"
+
+            else:
+                change_class = "flat"
 
         else:
 
             change_text = "N/A"
+            change_class = "flat"
 
 
         ticker_items.append(
             f'<span class="ticker-item">'
             f'<strong>{ticker}</strong> '
             f'{price:,.2f} '
-            f'<span class="ticker-change">'
+            f'<span class="ticker-change {change_class}">'
             f'{change_text}'
             f'</span>'
             f'</span>'
@@ -1468,7 +1629,7 @@ st.markdown(
     'Major Commodities'
     '</div>'
     '<div class="section-header-accent">'
-    'Commodities'
+    'Prices'
     '</div>'
     '</div>',
     unsafe_allow_html=True
@@ -1640,9 +1801,12 @@ else:
         events_to_display = filtered_data.head(5)
 
 
-    # -----------------------------------------------------
+   # -----------------------------------------------------
     # DISPLAY EVENTS
     # -----------------------------------------------------
+
+    event_blocks = []
+
 
     for _, row in events_to_display.iterrows():
 
@@ -1701,18 +1865,45 @@ else:
         )
 
 
-        source = (
-            str(row["source"])
-            if pd.notna(row["source"])
-            else "FinanceCalendar.com"
+        event_url = (
+            str(row["source_url"])
+            if "source_url" in row.index
+            and pd.notna(row["source_url"])
+            else ""
         )
 
 
         # -------------------------------------------------
-        # BUILD EVENT HTML
+        # EVENT HEADLINE LINK
+        # -------------------------------------------------
+
+        if event_url:
+
+            event_name_html = (
+                f'<a '
+                f'class="economic-event-link" '
+                f'href="{event_url}" '
+                f'target="_blank" '
+                f'rel="noopener noreferrer">'
+                f'{event_name}'
+                f'</a>'
+            )
+
+        else:
+
+            event_name_html = (
+                f'<span class="economic-event-link">'
+                f'{event_name}'
+                f'</span>'
+            )
+
+
+        # -------------------------------------------------
+        # BUILD EVENT
         # -------------------------------------------------
 
         event_html = (
+
             '<div class="economic-event">'
 
             '<div class="economic-event-top">'
@@ -1723,10 +1914,12 @@ else:
             f'</div>'
 
             f'<div class="economic-event-name">'
-            f'{event_name}'
+            f'{event_name_html}'
+
             f'<div class="economic-event-title">'
             f'{title}'
             f'</div>'
+
             f'</div>'
 
             f'<div class="economic-event-impact">'
@@ -1754,20 +1947,23 @@ else:
 
             '</div>'
 
-            f'<div class="economic-event-source">'
-            f'Source: {source}'
-            f'</div>'
-
             '</div>'
         )
 
 
-        st.markdown(
-            event_html,
-            unsafe_allow_html=True
-        )
+        event_blocks.append(event_html)
 
 
+# -------------------------------------------------
+# RENDER ALL EVENTS TOGETHER
+# -------------------------------------------------
+
+if event_blocks:
+
+    st.markdown(
+        "".join(event_blocks),
+        unsafe_allow_html=True
+    )
     # -----------------------------------------------------
     # SHOW MORE / SHOW LESS
     # -----------------------------------------------------
@@ -1877,14 +2073,8 @@ else:
             .replace("&", "and")
         )
 
-
         page_key = (
             f"news_page_{category_key}"
-        )
-
-
-        view_more_key = (
-            f"news_view_more_{category_key}"
         )
 
 
@@ -1895,41 +2085,14 @@ else:
             ] = 1
 
 
-        if view_more_key not in st.session_state:
-
-            st.session_state[
-                view_more_key
-            ] = False
-
-
         page_size = 5
 
 
         # -------------------------------------------------
-        # VIEW MORE
+        # ALL STORIES AVAILABLE THROUGH PAGINATION
         # -------------------------------------------------
 
-        if st.session_state[
-            view_more_key
-        ]:
-
-            max_stories = len(
-                category_data
-            )
-
-        else:
-
-            max_stories = min(
-                len(category_data),
-                25
-            )
-
-
-        visible_data = (
-            category_data
-            .head(max_stories)
-        )
-
+        visible_data = category_data.copy()
 
         # -------------------------------------------------
         # TOTAL PAGES
@@ -2103,15 +2266,49 @@ else:
 
         if total_pages > 1:
 
-            pagination_columns = st.columns(
-                min(
-                    total_pages + 2,
-                    8
+            max_visible_pages = 6
+
+            # Determine which page numbers to display
+            if total_pages <= max_visible_pages:
+
+                page_numbers = list(
+                    range(1, total_pages + 1)
                 )
+
+            elif current_page <= 3:
+
+                page_numbers = list(
+                    range(1, max_visible_pages + 1)
+                )
+
+            elif current_page >= total_pages - 2:
+
+                page_numbers = list(
+                    range(
+                        total_pages - max_visible_pages + 1,
+                        total_pages + 1
+                    )
+                )
+
+            else:
+
+                page_numbers = list(
+                    range(
+                        current_page - 2,
+                        current_page + 4
+                    )
+                )
+
+
+            # Previous + page numbers + next
+            pagination_columns = st.columns(
+                len(page_numbers) + 2
             )
 
 
-            # Previous
+            # -------------------------------------------------
+            # PREVIOUS
+            # -------------------------------------------------
 
             with pagination_columns[0]:
 
@@ -2130,25 +2327,16 @@ else:
                     st.rerun()
 
 
-            # Page numbers
+            # -------------------------------------------------
+            # PAGE NUMBERS
+            # -------------------------------------------------
 
-            max_page_buttons = (
-                len(pagination_columns)
-                - 2
-            )
-
-
-            for page_number in range(
-                1,
-                min(
-                    total_pages,
-                    max_page_buttons
-                ) + 1
+            for index, page_number in enumerate(
+                page_numbers,
+                start=1
             ):
 
-                with pagination_columns[
-                    page_number
-                ]:
+                with pagination_columns[index]:
 
                     if st.button(
                         str(page_number),
@@ -2158,8 +2346,7 @@ else:
                         ),
                         type=(
                             "primary"
-                            if page_number
-                            == current_page
+                            if page_number == current_page
                             else "secondary"
                         )
                     ):
@@ -2171,7 +2358,9 @@ else:
                         st.rerun()
 
 
-            # Next
+            # -------------------------------------------------
+            # NEXT
+            # -------------------------------------------------
 
             with pagination_columns[-1]:
 
@@ -2179,8 +2368,7 @@ else:
                     "›",
                     key=f"{page_key}_next",
                     disabled=(
-                        current_page
-                        == total_pages
+                        current_page == total_pages
                     )
                 ):
 
@@ -2190,31 +2378,6 @@ else:
 
                     st.rerun()
 
-
-        # -------------------------------------------------
-        # VIEW MORE
-        # -------------------------------------------------
-
-        if (
-            not st.session_state[
-                view_more_key
-            ]
-            and len(category_data) > 25
-        ):
-
-            if st.button(
-                "View more",
-                key=(
-                    f"{view_more_key}_button"
-                ),
-                use_container_width=True
-            ):
-
-                st.session_state[
-                    view_more_key
-                ] = True
-
-                st.rerun()
 
 
         st.markdown(

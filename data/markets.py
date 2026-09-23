@@ -11,11 +11,16 @@ def get_market_data(instruments):
     for name, ticker in instruments.items():
 
         try:
-            data = yf.Ticker(ticker).history(period="2d")
+            data = yf.Ticker(ticker).history(period="5d")
 
             if data.empty:
                 continue
 
+            data = data.dropna(subset=["Close"])
+
+            if data.empty:
+                continue
+            
             latest = data["Close"].iloc[-1]
 
             if len(data) >= 2:

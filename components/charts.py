@@ -26,23 +26,93 @@ def create_yield_curve(treasury_data):
 
     curve_data = curve_data.sort_values("maturity")
 
+    # Dynamic Y-axis range
+    min_yield = curve_data["yield"].min()
+    max_yield = curve_data["yield"].max()
+
     fig = go.Figure()
 
     fig.add_trace(
         go.Scatter(
-            x=curve_data["maturity"],
+            x=curve_data["maturity"].str.replace(
+                "Y", ""
+            ).astype(int),
+
             y=curve_data["yield"],
+
             mode="lines+markers",
-            name="Treasury Yield"
+
+            name="Treasury Yield",
+
+            line=dict(
+                color="#C9A14B",
+                width=2
+            ),
+
+            marker=dict(
+                color="#C9A14B",
+                size=7
+            )
         )
     )
 
     fig.update_layout(
         title="US Treasury Yield Curve",
-        xaxis_title="Maturity",
-        yaxis_title="Yield (%)",
+
         height=450,
-        template="plotly_dark",
+
+        plot_bgcolor="#0F1826",
+        paper_bgcolor="#0F1826",
+
+        font=dict(
+            color="#EDE6D6"
+        ),
+
+        xaxis=dict(
+            title="Maturity",
+
+            tickmode="array",
+
+            tickvals=[
+                2,
+                3,
+                5,
+                7,
+                10,
+                20,
+                30
+            ],
+
+            ticktext=[
+                "2Y",
+                "3Y",
+                "5Y",
+                "7Y",
+                "10Y",
+                "20Y",
+                "30Y"
+            ],
+
+            gridcolor="#354052",
+
+            zerolinecolor="#354052"
+        ),
+
+        yaxis=dict(
+            title="Yield (%)",
+
+            gridcolor="#354052",
+
+            zerolinecolor="#354052",
+
+            tickformat=".1f",
+
+            range=[
+                min_yield - 0.1,
+                max_yield + 0.1
+            ]
+        ),
+
         hovermode="x unified"
     )
 

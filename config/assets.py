@@ -19,9 +19,6 @@ INDICES = {
         "Hang Seng": "^HSI",
         "Shanghai Composite": "000001.SS",
         "KOSPI": "^KS11",
-    },
-
-    "Emerging Markets": {
         "Nifty 50": "^NSEI",
         "ASX 200": "^AXJO",
     },

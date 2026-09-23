@@ -8,68 +8,43 @@ from config.assets import SP100
 @st.cache_data(ttl=60)
 def get_sp100_ticker_data():
 
-    try:
+    results = []
 
-        data = yf.download(
-            SP100,
-            period="2d",
-            interval="1d",
-            group_by="ticker",
-            auto_adjust=False,
-            progress=False,
-            threads=True
-        )
+    for ticker in SP100:
 
-        results = []
+        try:
 
-        for ticker in SP100:
+            stock = yf.Ticker(ticker)
 
-            try:
+            info = stock.info
 
-                ticker_data = data[ticker]
+            current_price = info.get("regularMarketPrice")
+            previous_close = info.get("regularMarketPreviousClose")
 
-                ticker_data = ticker_data.dropna(
-                    subset=["Close"]
-                )
-
-                if ticker_data.empty:
-                    continue
-
-                latest = float(
-                    ticker_data["Close"].iloc[-1]
-                )
-
-                if len(ticker_data) >= 2:
-
-                    previous = float(
-                        ticker_data["Close"].iloc[-2]
-                    )
-
-                    change_pct = (
-                        (latest / previous) - 1
-                    ) * 100
-
-                else:
-
-                    change_pct = None
-
-
-                results.append(
-                    {
-                        "ticker": ticker,
-                        "price": latest,
-                        "change_pct": change_pct,
-                    }
-                )
-
-            except Exception:
-
+            if current_price is None:
                 continue
 
+            current_price = float(current_price)
 
-        return pd.DataFrame(results)
+            if previous_close is not None:
+                previous_close = float(previous_close)
 
+                change_pct = (
+                    (current_price / previous_close) - 1
+                ) * 100
 
-    except Exception:
+            else:
+                change_pct = None
 
-        return pd.DataFrame()
+            results.append(
+                {
+                    "ticker": ticker,
+                    "price": current_price,
+                    "change_pct": change_pct,
+                }
+            )
+
+        except Exception:
+            continue
+
+    return pd.DataFrame(results)
